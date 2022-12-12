@@ -27,6 +27,11 @@ security:
                 success_handler: lexik_jwt_authentication.handler.authentication_success
                 failure_handler: lexik_jwt_authentication.handler.authentication_failure
 
+            logout:
+                path: app_logout
+                # where to redirect after logout
+                # target: app_any_route
+
 
         api:
             pattern: ^/api
@@ -36,6 +41,9 @@ security:
         main:
             lazy: true
             provider: app_user_provider
+            logout:
+                path: /logout
+            custom_authenticator: App\Security\AppCustomAuthenticator
 
 
 
@@ -50,7 +58,10 @@ security:
     access_control:
         - { path: ^/api/docs,  roles: PUBLIC_ACCESS } # Allows accessing the Swagger UI
         - { path: ^/api/login, roles: PUBLIC_ACCESS }
-        - { path: ^/api/films, roles: ROLE_USER }
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/api/user, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/api/movies, roles: IS_AUTHENTICATED_FULLY }
+
 
 when@test:
     security:
