@@ -19,10 +19,12 @@ class MoviesCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
+
         return [
             IdField::new('id'),
             TextField::new('title'),
             ArrayField::new('genre'),
+            ArrayField::new('production_companies'),
             TextEditorField::new('description'),
         ];
     }

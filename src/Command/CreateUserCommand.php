@@ -43,6 +43,8 @@ class CreateUserCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $entityManager = $this->doctrine->getManager();
+
+        // Movies
         for($i = 2; $i <= 100; $i++){
             $url = 'https://api.themoviedb.org/3/movie/'.$i.'?api_key=a769aba61ba3f4584d34a56d5f6ece11';
             $response = $this->client->request(
@@ -55,10 +57,17 @@ class CreateUserCommand extends Command
                 $movies = new Movies();
                 $movies->setTitle($content['title']);
                 $movies->setDescription($content['overview']);
-                $movies->setProductionCompanies($content['production_companies']);
+                if($content['production_companies']){
+                    $movies->setProductionCompanies([$content['production_companies'][0]['name']]);
+                }else{
+                    $movies->setProductionCompanies([NULL]);
+                }
 
-                for ($i = 0; $i < sizeof($content['genres']); $i++){}
-                $movies->setGenre([$content['genres'][$i]['name']]);
+                if($content['genres']) {
+                    $movies->setGenre([$content['genres'][0]['name']]);
+                }else{
+                    $movies->setGenre([NULL]);
+                }
 
                 $entityManager->persist($movies);
             }

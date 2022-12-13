@@ -7,8 +7,9 @@ use App\Repository\MoviesRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: MoviesRepository::class)]
+
 #[ApiResource]
+#[ORM\Entity(repositoryClass: MoviesRepository::class)]
 class Movies
 {
     #[ORM\Id]
@@ -33,6 +34,12 @@ class Movies
         return $this->id;
     }
 
+    public function setId(string $id): self
+    {
+        $this->id = $id;
+        return $this;
+    }
+
     public function getTitle(): ?string
     {
         return $this->Title;
@@ -41,7 +48,6 @@ class Movies
     public function setTitle(string $Title): self
     {
         $this->Title = $Title;
-
         return $this;
     }
 
@@ -53,37 +59,30 @@ class Movies
     public function setDescription(string $Description): self
     {
         $this->Description = $Description;
-
         return $this;
     }
 
     public function getProductionCompanies(): array
     {
-        return $this->production_companies;
-        $production_companies[] = 'ROLE_USER';
-
+        $production_companies = $this->production_companies;
         return array_unique($production_companies);
     }
 
     public function setProductionCompanies(array $production_companies): self
     {
         $this->production_companies = $production_companies;
-
         return $this;
     }
 
     public function getGenre(): array
     {
-        return $this->Genre;
-        $Genre[] = 'ROLE_USER';
-
+        $Genre = $this->Genre;
         return array_unique($Genre);
     }
 
     public function setGenre(array $Genre): self
     {
         $this->Genre = $Genre;
-
         return $this;
     }
 }
