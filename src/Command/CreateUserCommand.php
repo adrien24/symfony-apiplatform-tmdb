@@ -3,6 +3,7 @@ namespace App\Command;
 
 
 use App\Entity\Movies;
+use App\Entity\Series;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -47,13 +48,13 @@ class CreateUserCommand extends Command
         // Movies
         for($i = 2; $i <= 100; $i++){
             $url = 'https://api.themoviedb.org/3/movie/'.$i.'?api_key=a769aba61ba3f4584d34a56d5f6ece11&language=fr-FR';
-            $response = $this->client->request(
+            $responseMovies = $this->client->request(
                 'GET',
                 $url
             );
-            $statusCode = $response->getStatusCode();
+            $statusCode = $responseMovies->getStatusCode();
             if($statusCode == 200){
-                $content = $response->toArray();
+                $content = $responseMovies->toArray();
                 $movies = new Movies();
                 $movies->setTitle($content['title']);
                 $movies->setDescription($content['overview']);
@@ -70,6 +71,36 @@ class CreateUserCommand extends Command
                 }
 
                 $entityManager->persist($movies);
+            }
+        }
+
+        // Series
+
+        for($i = 2; $i <= 100; $i++){
+            $urlSeries = 'https://api.themoviedb.org/3/tv/'.$i.'?api_key=a769aba61ba3f4584d34a56d5f6ece11&language=fr-FR';
+            $responseSeries = $this->client->request(
+                'GET',
+                $urlSeries
+            );
+            $statusCode = $responseSeries->getStatusCode();
+            if($statusCode == 200){
+                $content = $responseSeries->toArray();
+                $series = new Series();
+                $series->setName($content['name']);
+                $series->setDescription($content['overview']);
+                $series->setBackdropPath($content['backdrop_path']);
+                if($content['languages']){
+
+                    $series->setLanguages($content['languages'][0]);
+                }
+
+                if($content['episode_run_time']) {
+                    $series->setEpisodeTime($content['episode_run_time'][0]);
+                }
+                $series->setNumberEpisodes($content['number_of_episodes']);
+
+
+                $entityManager->persist($series);
             }
         }
 

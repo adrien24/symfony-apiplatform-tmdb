@@ -17,25 +17,22 @@ class Series
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $name = null;
+    private ?string $name = null;//ok
 
-    #[ORM\Column(type: Types::ARRAY, nullable: true)]
-    private array $languages = [];
+    #[ORM\Column(nullable: true)]
+    private ?string $languages = null;
 
-    #[ORM\Column(type: Types::ARRAY, nullable: true)]
-    private array $episode_time = [];
+    #[ORM\Column(nullable: true)]
+    private ?int $episode_time = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $backdrop_path = null;
 
-    #[ORM\Column]
-    private ?int $number_episodes = null;
-
-    #[ORM\Column(type: Types::ARRAY)]
-    private array $origin_country = [];
+    #[ORM\Column(nullable: true)]
+    private ?int $number_episodes = null; //ok
 
     #[ORM\Column(type: Types::TEXT)]
-    private ?string $description = null;
+    private ?string $description = null; //ok
 
     public function getId(): ?int
     {
@@ -54,24 +51,23 @@ class Series
         return $this;
     }
 
-    public function getLanguages(): array
+    public function getLanguages(): string
     {
         return $this->languages;
     }
 
-    public function setLanguages(?array $languages): self
+    public function setLanguages(?string $languages): self
     {
         $this->languages = $languages;
-
         return $this;
     }
 
-    public function getEpisodeTime(): array
+    public function getEpisodeTime(): int
     {
         return $this->episode_time;
     }
 
-    public function setEpisodeTime(?array $episode_time): self
+    public function setEpisodeTime(?int $episode_time): self
     {
         $this->episode_time = $episode_time;
 
@@ -98,18 +94,6 @@ class Series
     public function setNumberEpisodes(int $number_episodes): self
     {
         $this->number_episodes = $number_episodes;
-
-        return $this;
-    }
-
-    public function getOriginCountry(): array
-    {
-        return $this->origin_country;
-    }
-
-    public function setOriginCountry(array $origin_country): self
-    {
-        $this->origin_country = $origin_country;
 
         return $this;
     }
