@@ -2,8 +2,10 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Animes;
 use App\Entity\Movies;
 use App\Entity\User;
+use App\Entity\Series;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -48,6 +50,8 @@ class DashboardController extends AbstractDashboardController
 
         yield MenuItem::linkToCrud('User', 'fas fa-users', User::class);
         yield MenuItem::linkToCrud('Movies', 'fas fa-users', Movies::class);
+        yield MenuItem::linkToCrud('Series', 'fas fa-users', Series::class);
+        yield MenuItem::linkToCrud('Animes', 'fas fa-users', Animes::class);
         yield MenuItem::linkToLogout('Logout', 'fas fa-exit');
     }
 }

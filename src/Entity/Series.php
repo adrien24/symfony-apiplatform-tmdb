@@ -28,7 +28,7 @@ class Series
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $backdrop_path = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column]
     private ?int $number_episodes = null; //ok
 
     #[ORM\Column(type: Types::TEXT)]

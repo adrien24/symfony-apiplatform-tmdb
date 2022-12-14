@@ -2,6 +2,7 @@
 namespace App\Command;
 
 
+use App\Entity\Animes;
 use App\Entity\Movies;
 use App\Entity\Series;
 use Doctrine\Persistence\ManagerRegistry;
@@ -17,7 +18,7 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 // the name of the command is what users type after "php bin/console"
-#[AsCommand(name: 'app:create-user')]
+#[AsCommand(name: 'app:create-table')]
 class CreateUserCommand extends Command
 {
     private $client;
@@ -88,19 +89,62 @@ class CreateUserCommand extends Command
                 $series = new Series();
                 $series->setName($content['name']);
                 $series->setDescription($content['overview']);
-                $series->setBackdropPath($content['backdrop_path']);
-                if($content['languages']){
+                if($content['backdrop_path']){
+                    $series->setBackdropPath($content['backdrop_path']);
+                }else{
+                    $series->setBackdropPath("null");
+                }
 
+                if($content['languages']){
                     $series->setLanguages($content['languages'][0]);
+                }else{
+                    $series->setLanguages("null");
                 }
 
                 if($content['episode_run_time']) {
                     $series->setEpisodeTime($content['episode_run_time'][0]);
+                }else{
+                    $series->setEpisodeTime(0);
                 }
                 $series->setNumberEpisodes($content['number_of_episodes']);
 
 
                 $entityManager->persist($series);
+            }
+        }
+
+        // Animes
+
+        for($i = 2; $i <= 100; $i++){
+            $urlSeries = 'https://kitsu.io/api/edge/anime?filter[categories]=adventure&page[limit]=1&page[offset]=' . $i;
+            $responseAnimes = $this->client->request(
+                'GET',
+                $urlSeries
+            );
+            $statusCode = $responseAnimes->getStatusCode();
+            if($statusCode == 200){
+                $content = $responseAnimes->toArray();
+                $animes = new Animes();
+                $animes->setType($content['data'][0]['type']);
+                if($content['data'][0]['attributes']['synopsis']){
+                    $animes->setSynopsis($content['data'][0]['attributes']['synopsis']);
+                }else{
+                    $animes->setSynopsis("null");
+                }
+
+                $animes->setName($content['data'][0]['attributes']['canonicalTitle']);
+                $animes->setStatus($content['data'][0]['attributes']['status']);
+                $animes->setImage($content['data'][0]['attributes']['posterImage']['large']);
+                if($content['data'][0]['attributes']['episodeCount']){
+                    $animes->setEpisodeCount($content['data'][0]['attributes']['episodeCount']);
+                }else{
+                    $animes->setEpisodeCount(0);
+                }
+
+                $animes->setPoster([$content['data'][0]['attributes']['posterImage']]);
+
+
+                $entityManager->persist($animes);
             }
         }
 
