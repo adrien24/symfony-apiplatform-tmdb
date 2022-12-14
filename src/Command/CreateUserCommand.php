@@ -46,7 +46,7 @@ class CreateUserCommand extends Command
 
         // Movies
         for($i = 2; $i <= 100; $i++){
-            $url = 'https://api.themoviedb.org/3/movie/'.$i.'?api_key=a769aba61ba3f4584d34a56d5f6ece11';
+            $url = 'https://api.themoviedb.org/3/movie/'.$i.'?api_key=a769aba61ba3f4584d34a56d5f6ece11&language=fr-FR';
             $response = $this->client->request(
                 'GET',
                 $url
