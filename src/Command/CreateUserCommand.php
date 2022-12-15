@@ -3,7 +3,9 @@ namespace App\Command;
 
 
 use App\Entity\Animes;
+use App\Entity\Memes;
 use App\Entity\Movies;
+use App\Entity\Posts;
 use App\Entity\Series;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Console\Attribute\AsCommand;
@@ -145,6 +147,53 @@ class CreateUserCommand extends Command
 
 
                 $entityManager->persist($animes);
+            }
+        }
+
+        // Memes
+
+        for($i = 0; $i <= 99; $i++){
+            $urlSeries = 'https://api.imgflip.com/get_memes';
+            $responseMemes = $this->client->request(
+                'GET',
+                $urlSeries
+            );
+            $statusCode = $responseMemes->getStatusCode();
+            if($statusCode == 200){
+                $content = $responseMemes->toArray();
+                $memes = new Memes();
+                if($content['data']['memes'][$i]){
+                    $memes->setName($content['data']['memes'][$i]['name']);
+                    $memes->setUrl($content['data']['memes'][$i]['url']);
+                    $memes->setWidth($content['data']['memes'][$i]['width']);
+                    $memes->setHeight($content['data']['memes'][$i]['height']);
+                    $memes->setBoxCount($content['data']['memes'][$i]['box_count']);
+                    $memes->setCaptions($content['data']['memes'][$i]['captions']);
+                }
+                $entityManager->persist($memes);
+            }
+        }
+
+        // Memes
+
+        for($i = 10; $i <= 300; $i++){
+            $urlPosts = 'https://techcrunch.com/wp-json/wp/v2/posts/'.$i;
+            $responsePosts = $this->client->request(
+                'GET',
+                $urlPosts
+            );
+            $statusCode = $responsePosts->getStatusCode();
+            if($statusCode == 200){
+                $content = $responsePosts->toArray();
+                $posts = new Posts();
+
+                    $posts->setDate($content['date']);
+                    $posts->setSlug($content['slug']);
+                    $posts->setType($content['type']);
+                    $posts->setTitle($content['title']['rendered']);
+
+
+                $entityManager->persist($posts);
             }
         }
 

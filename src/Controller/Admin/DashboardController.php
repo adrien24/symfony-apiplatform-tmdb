@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Animes;
+use App\Entity\Memes;
 use App\Entity\Movies;
 use App\Entity\User;
 use App\Entity\Series;
@@ -52,6 +53,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Movies', 'fas fa-users', Movies::class);
         yield MenuItem::linkToCrud('Series', 'fas fa-users', Series::class);
         yield MenuItem::linkToCrud('Animes', 'fas fa-users', Animes::class);
+        yield MenuItem::linkToCrud('Memes', 'fas fa-users', Memes::class);
         yield MenuItem::linkToLogout('Logout', 'fas fa-exit');
     }
 }
