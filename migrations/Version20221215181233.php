@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20221214154731 extends AbstractMigration
+final class Version20221215181233 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -25,15 +25,9 @@ final class Version20221214154731 extends AbstractMigration
             "Migration can only be executed safely on '\Doctrine\DBAL\Platforms\SqlitePlatform'."
         );
 
-        $this->addSql('CREATE TABLE movies (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, title VARCHAR(255) NOT NULL COLLATE "BINARY", description CLOB NOT NULL COLLATE "BINARY", production_companies CLOB NOT NULL COLLATE "BINARY" --(DC2Type:json)
-        , genre CLOB NOT NULL COLLATE "BINARY" --(DC2Type:json)
+        $this->addSql('CREATE TABLE movies (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, title VARCHAR(255) NOT NULL COLLATE "BINARY", description CLOB NOT NULL COLLATE "BINARY", production_companies CLOB NOT NULL COLLATE "BINARY" --(DC2Type:array)
+        , genre CLOB NOT NULL COLLATE "BINARY" --(DC2Type:array)
         )');
-        $this->abortIf(
-            !$this->connection->getDatabasePlatform() instanceof \Doctrine\DBAL\Platforms\SqlitePlatform,
-            "Migration can only be executed safely on '\Doctrine\DBAL\Platforms\SqlitePlatform'."
-        );
-
-        $this->addSql('CREATE TABLE series (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name VARCHAR(255) NOT NULL COLLATE "BINARY", languages VARCHAR(255) DEFAULT NULL COLLATE "BINARY", episode_time INTEGER DEFAULT NULL, backdrop_path VARCHAR(255) DEFAULT NULL COLLATE "BINARY", number_episodes INTEGER DEFAULT NULL, description CLOB NOT NULL COLLATE "BINARY")');
         $this->abortIf(
             !$this->connection->getDatabasePlatform() instanceof \Doctrine\DBAL\Platforms\SqlitePlatform,
             "Migration can only be executed safely on '\Doctrine\DBAL\Platforms\SqlitePlatform'."
@@ -53,12 +47,6 @@ final class Version20221214154731 extends AbstractMigration
         );
 
         $this->addSql('DROP TABLE movies');
-        $this->abortIf(
-            !$this->connection->getDatabasePlatform() instanceof \Doctrine\DBAL\Platforms\SqlitePlatform,
-            "Migration can only be executed safely on '\Doctrine\DBAL\Platforms\SqlitePlatform'."
-        );
-
-        $this->addSql('DROP TABLE series');
         $this->abortIf(
             !$this->connection->getDatabasePlatform() instanceof \Doctrine\DBAL\Platforms\SqlitePlatform,
             "Migration can only be executed safely on '\Doctrine\DBAL\Platforms\SqlitePlatform'."
