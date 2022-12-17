@@ -53,7 +53,7 @@ You can find the differents email in the User table
     * /api/posts/{id}
 
 You can POST,GET,PUT and DELETE on all the route if you are logged with the account admin
-You can GET on all the route if you are logged with the account user
+  You can GET on all the route if you are logged with the account user
 
 
 ## easyAdmin
