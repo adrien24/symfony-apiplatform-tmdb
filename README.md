@@ -54,7 +54,7 @@ You can POST,GET,PUT and DELETE on all the route if you are logged
 ### the different routes :
 
 1. DOMAIN_URL/register (if you want to create a new user)
-    * The default rols of the new user is "ROLE_USER", so you can't enter directly in the admin panel. The administrator will have to give you the role "ROLE_ADMIN" if you want enter in the admin panel with this account
+    * The default role of the new user is "ROLE_USER", so you can't enter directly in the admin panel. The administrator will have to give you the role "ROLE_ADMIN" if you want enter in the admin panel with this account
 2. DOMAIN_URL/login   (if you want to connect in the admin panel)
 3. DOMAIN_URL/admin   (if you want to access to the admin panel)
 
