@@ -10,6 +10,11 @@ Comme nous l'avons vu en cours j'avais un problème pour me connecter à ma base
 2. php bin/console doctrine:database:create
 3. php bin/console doctrine:migrations:diff
 3. php bin/console doctrine:migrations:migrate
+    * if you have problems with the migration you can try to execute the command
+        * rm -rf migrations/*
+        * symfony console doctrine:migrations:dump-schema
+        * symfony console doctrine:migrations:rollup
+        * php bin/console doctrine:migrations:migrate
 4. php bin/console doctrine:fixtures:load
 5. php bin/console app:create-tables
     * the command may take a long time to execute because there is a lot of give to get
