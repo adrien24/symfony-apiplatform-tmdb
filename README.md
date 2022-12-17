@@ -25,13 +25,19 @@ Comme nous l'avons vu en cours j'avais un problème pour me connecter à ma base
 ### Get the jwt token :
 
 Post on the route /api/login_check this body
-
+### For the admin role
 {
     "email": "admin@gmail.com",
     "password": "admin"
 } 
 
-You can find the differents email and password on the User table
+### For the user role
+{
+    "email": "user1@gmail.com",
+    "password": "password"
+}
+
+You can find the differents email in the User table
 
 ### the different routes :
 
