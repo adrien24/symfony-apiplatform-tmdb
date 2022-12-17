@@ -22,14 +22,14 @@ Comme nous l'avons vu en cours j'avais un problème pour me connecter à ma base
 
 ## API
 
-## Get the jwt token :
+### Get the jwt token :
 
 Post on the route /api/login_check this body
 
 {
     "email": "admin@gmail.com",
     "password": "admin"
-}
+} 
 
 You can find the differents email and password on the User table
 
