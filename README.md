@@ -24,7 +24,7 @@ Comme nous l'avons vu en cours j'avais un problème pour me connecter à ma base
 
 ### Get the jwt token :
 
-Post on this line on route /api/login_check in the body
+Post this line on the route /api/login_check in the body
 ### For the admin role
 {
     "email": "admin@gmail.com",
