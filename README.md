@@ -18,7 +18,7 @@ Comme nous l'avons vu en cours j'avais un problème pour me connecter à ma base
 4. php bin/console doctrine:fixtures:load
 5. php bin/console app:create-tables
     * the command may take a long time to execute because there is a lot of give to get
-6. php bin/console server:start
+6. symfony server:start
 
 ## API
 
