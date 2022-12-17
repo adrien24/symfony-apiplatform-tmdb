@@ -22,6 +22,17 @@ Comme nous l'avons vu en cours j'avais un problème pour me connecter à ma base
 
 ## API
 
+## Get the jwt token :
+
+Post on the route /api/login_check this body
+
+{
+    "email": "admin@gmail.com",
+    "password": "admin"
+}
+
+You can find the differents email and password on the User table
+
 ### the different routes :
 
 1. /api/movies
@@ -35,13 +46,16 @@ Comme nous l'avons vu en cours j'avais un problème pour me connecter à ma base
 9. /api/posts
     * /api/posts/{id}
 
+You can POST,GET,PUT and DELETE on all the route if you are logged
+
 
 ## easyAdmin
 
 ### the different routes :
 
 1. DOMAIN_URL/register (if you want to create a new user)
-2. DOMAIN_URL/login   (if you want to connect)
+    * The default rols of the new user is "ROLE_USER", so you can't enter directly in the admin panel. The administrator will have to give you the role "ROLE_ADMIN" if you want enter in the admin panel with this account
+2. DOMAIN_URL/login   (if you want to connect in the admin panel)
 3. DOMAIN_URL/admin   (if you want to access to the admin panel)
 
 
