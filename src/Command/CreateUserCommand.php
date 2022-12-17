@@ -20,7 +20,7 @@ use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 // the name of the command is what users type after "php bin/console"
-#[AsCommand(name: 'app:create-table')]
+#[AsCommand(name: 'app:create-tables')]
 class CreateUserCommand extends Command
 {
     private $client;
