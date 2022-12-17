@@ -51,11 +51,11 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
 
         yield MenuItem::linkToCrud('User', 'fas fa-users', User::class);
-        yield MenuItem::linkToCrud('Movies', 'fas fa-users', Movies::class);
-        yield MenuItem::linkToCrud('Series', 'fas fa-users', Series::class);
-        yield MenuItem::linkToCrud('Animes', 'fas fa-users', Animes::class);
-        yield MenuItem::linkToCrud('Memes', 'fas fa-users', Memes::class);
-        yield MenuItem::linkToCrud('Posts', 'fas fa-users', Posts::class);
-        yield MenuItem::linkToLogout('Logout', 'fas fa-exit');
+        yield MenuItem::linkToCrud('Movies', 'fas fa-ticket', Movies::class);
+        yield MenuItem::linkToCrud('Series', 'fas fa-film', Series::class);
+        yield MenuItem::linkToCrud('Animes', 'fas fa-clapperboard', Animes::class);
+        yield MenuItem::linkToCrud('Memes', 'fas fa-meteor', Memes::class);
+        yield MenuItem::linkToCrud('Posts', 'fas fa-newspaper', Posts::class);
+        yield MenuItem::linkToLogout('Logout', 'fas fa-right-from-bracket');
     }
 }
